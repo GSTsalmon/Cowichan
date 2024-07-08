@@ -1,0 +1,71 @@
+---
+title: "Cowichan River Water Quality dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyr)
+library(lubridate)
+library(ggplot2)
+library(dplyr)
+library(plotly)
+```
+
+
+
+```{r}
+
+#pH Data
+data<-read.csv("pHMaster.csv")
+
+#Data Formatting----
+
+data$Date = as.POSIXct(data$Date, format = "%m/%d/%Y %H:%M")
+
+
+pHlong <- data %>% 
+  pivot_longer(
+    cols = 2:6, 
+    names_to = "site",
+    values_to = "pH"
+  )
+
+pHlong$site<-factor(pHlong$site,levels=c("Saysells","Trestle","HSB", "US_JUB","DS_JUB"))
+
+#keep the rows where pH is not missing
+pHlong_no_NA <- filter(pHlong, pH != "NA" & site != 'na')
+
+```
+
+pH {data-orientation=rows}
+=====================================
+
+Row {data-height=600}
+-------------------------------------
+
+### pH time series
+
+```{r}
+
+
+pHPlot<- ggplot(data=pHlong_no_NA,aes(x=Date, y=pH,
+                     colour=site,group=site))+
+  geom_point(position=position_jitter(h=0.1, w=0.1),
+             shape = 21, alpha = 0.5, size = 0.5)+
+  scale_x_datetime(date_labels= "%e-%b", date_breaks="5 days")+
+  xlab("")+
+  ylab("pH")+
+  theme_classic()
+ggplotly(pHPlot)
+```
+
+Dissolved Oxygen
+=====================================  
+
+
+Temperature
+===================================== 
