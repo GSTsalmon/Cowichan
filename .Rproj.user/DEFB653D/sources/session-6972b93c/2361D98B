@@ -3,7 +3,7 @@
     "path": "C:/Users/POURFARAJV/Desktop/dashboard/index.Rmd",
     "project_path": "index.Rmd",
     "type": "r_markdown",
-    "hash": "0",
+    "hash": "2313617433",
     "contents": "",
     "dirty": false,
     "created": 1720482891104.0,
@@ -11,14 +11,17 @@
     "relative_order": 1,
     "properties": {
         "source_window_id": "",
-        "Source": "Source"
+        "Source": "Source",
+        "cursorPosition": "128,0",
+        "scrollLine": "100",
+        "last_setup_crc32": "6972b93c1d256b12"
     },
     "folds": "",
-    "lastKnownWriteTime": 1720479117,
+    "lastKnownWriteTime": 1720486246,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1720479117,
+    "last_content_update": 1720486246068,
     "read_only": false,
     "read_only_alternatives": []
 }
